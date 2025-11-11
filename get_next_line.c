@@ -2,7 +2,6 @@
 
 char *read_file(int fd, char *buf)
 {
-
 }
 
 char *get_next_line(int fd)
@@ -13,7 +12,6 @@ char *get_next_line(int fd)
         return (NULL);
 
     buffer = read_file(fd, buffer);
-    
 }
 int main(void)
 {
