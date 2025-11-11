@@ -3,6 +3,7 @@
   "files.associations": {
     "get_next_line.h": "c",
     "stddef.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "io.h": "c"
   }
 }

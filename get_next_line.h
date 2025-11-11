@@ -5,6 +5,10 @@
 #include <stddef.h>
 #include <fcntl.h>
 
+#ifndef BUFFER_SIZE_h
+#define BUFFER_SIZE 10
+#endif
+
 char *get_next_line(int fd);
 size_t ft_strlen(const char *theString);
 void *ft_calloc(size_t elementCount, size_t elementSize);

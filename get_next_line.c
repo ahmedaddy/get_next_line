@@ -1,8 +1,19 @@
 #include "get_next_line.h"
 
+char *read_file(int fd, char *buf)
+{
+
+}
+
 char *get_next_line(int fd)
 {
-    static char *str;
+    static char *buffer;
+    char *line;
+    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+        return (NULL);
+
+    buffer = read_file(fd, buffer);
+    
 }
 int main(void)
 {
