@@ -1,46 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaddy <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/12 14:48:09 by aaddy             #+#    #+#             */
+/*   Updated: 2025/11/12 15:35:16 by aaddy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-  char *nstr;
-  size_t s1l;
-  size_t s2l;
-  size_t i;
+	char	*nstr;
+	size_t	s1l;
+	size_t	s2l;
+	size_t	i;
 
-  if (!s1 || !s2)
-    return (NULL);
-  s1l = ft_strlen(s1);
-  s2l = ft_strlen(s2);
-  nstr = (char *)malloc(s1l + s2l + 1);
-  if (!nstr)
-    return (NULL);
-  i = 0;
-  while (i < s1l)
-  {
-    nstr[i] = s1[i];
-    i++;
-  }
-  while (i < s1l + s2l)
-  {
-    nstr[i] = s2[i - s1l];
-    i++;
-  }
-  nstr[i] = '\0';
-  return (nstr);
+	if (!s1 || !s2)
+		return (NULL);
+	s1l = ft_strlen(s1);
+	s2l = ft_strlen(s2);
+	nstr = (char *)malloc(s1l + s2l + 1);
+	if (!nstr)
+		return (NULL);
+	i = 0;
+	while (i < s1l)
+	{
+		nstr[i] = s1[i];
+		i++;
+	}
+	while (i < s1l + s2l)
+	{
+		nstr[i] = s2[i - s1l];
+		i++;
+	}
+	nstr[i] = '\0';
+	return (nstr);
 }
-char *ft_strchr(const char *s, int c)
+
+char	*ft_strchr(const char *s, int c)
 {
-  while (*s)
-  {
-    if (*s == ((char)c))
-    {
-      return ((char *)s);
-    }
-    s++;
-  }
-  if (((char)c) == '\0')
-    return ((char *)s);
-  return (0);
+	while (*s)
+	{
+		if (*s == ((char)c))
+			return ((char *)s);
+		s++;
+	}
+	if (((char)c) == '\0')
+		return ((char *)s);
+	return (0);
 }
 
 void	ft_bzero(void *s, size_t n)
