@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaddy <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:56:29 by aaddy             #+#    #+#             */
-/*   Updated: 2025/12/03 16:04:59 by aaddy            ###   ########.fr       */
+/*   Updated: 2025/11/17 15:32:24 by aaddy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*ft_join(char *buffer, char *buf)
 {
@@ -37,7 +36,6 @@ char	*read_file(int fd, char *buffer)
 	while (bytes > 0)
 	{
 		bytes = read(fd, buf, BUFFER_SIZE);
-		//printf("%d\n", bytes);
 		if (bytes < 0)
 			return (free(buf), free(buffer), NULL);
 		buf[bytes] = '\0';
@@ -105,23 +103,23 @@ char	*next_line(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
-		free(buffer);
-		buffer = NULL;
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 		return (NULL);
 	}
-	buffer = read_file(fd, buffer);
-	if (!buffer || buffer[0] == '\0')
+	buffer[fd] = read_file(fd, buffer[fd]);
+	if (!buffer[fd] || *buffer[fd] == '\0')
 	{
-		free(buffer);
-		buffer = NULL;
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 		return (NULL);
 	}
-	line = extract_line(buffer);
-	buffer = next_line(buffer);
+	line = extract_line(buffer[fd]);
+	buffer[fd] = next_line(buffer[fd]);
 	return (line);
 }
